@@ -33,8 +33,7 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "rol_id", nullable = true, updatable = false)
     private Rol rol;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cliente")
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval =  true)
     private Cliente cliente;
 
     private boolean deleted = false;

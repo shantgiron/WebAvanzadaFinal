@@ -27,7 +27,8 @@ public class Cliente implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval =  true)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuario")
     private Usuario usuario;
 
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval =  true)
