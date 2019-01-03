@@ -1,36 +1,82 @@
-<html>
+
+<!doctype html >
+<html lang="en">
 <head>
-    <title>Práctica Final Web Avanzada</title>
+    <title>Proyecto Final Web Avanzada</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <link href="/css/offline-theme-chrome.css" rel="stylesheet" />
-    <link href="/css/offline-language-spanish.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script></head>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" style="color:white">Práctica Final - Web Avanzada</a>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/vendor/linearicons/style.css">
+    <link rel="stylesheet" href="/assets/vendor/chartist/css/chartist-custom.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon.png">
+</head>
+
+<body>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <ul class="nav nav-pills">
+                <li><a href="#" class="right-aligned">Bienvenido, ${usuario}</a></li>
+                <li><a href="/logout" class="right-aligned">Cerrar Sesión</a></li>
+
+                 </ul>
+        </nav>
+        <!-- END NAVBAR -->
+        <!-- LEFT SIDEBAR -->
+        <div id="sidebar-nav" class="sidebar">
+            <div class="sidebar-scroll">
+                <nav>
+                    <ul class="nav">
+                        <li><a href="/" class=""><span><@spring.message "inicio" /></span></a></li>
+                        <li><a href="/usuarios/" class=""><span><@spring.message "usuarios"/></span></a></li>
+                        <li><a href="/clientes/" class=""><span><@spring.message "clientes"/></span></a></li>
+                        <li><a href="/productos/" class=""> <span><@spring.message "productos"/></span></a></li>
+                        <li><a href="/roles/" class=""><span><@spring.message "departamentos"/></span></a></li>
+                        <li><a href="/categorias/" class=""><span><@spring.message "categorias"/></span></a></li>
+                        <li><a href="/compras/" class=""><span><@spring.message "compras"/></span></a></li>
+
+                     
+                    </ul>
+                </nav>
+            </div>
         </div>
-        <ul class="nav navbar-nav" style="text-decoration:none">
-            <li class="navbar-item"><a href="/" class="nav-link"  >Inicio</a></li>
-
-        </ul>
-
-    </div>
-</nav>
-
-<footer class="main-footer bg-dark text-white" style="position:fixed;height:32px;width:100%;bottom:0;z-index:9;">
-
-    <p>Práctica Final - Web Avanzada - Ricardo, Emilio y Shantall &copy; 2019 </p>
-
-</footer>
+        <div class="clearfix"></div>
+        <footer>
+            <div class="container-fluid">
+                <p class="copyright"><@spring.message "derecho_autor" /></p>
+            </div>
+        </footer>
 
 
-<script src="/js/offline.min.js"></script>
+    
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+<script src="/assets/vendor/chartist/js/chartist.min.js"></script>
+<script src="/assets/scripts/klorofil-common.js"></script>
+<script src="/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js">   </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+<script src="/assets/vendor/chartist/js/chartist.min.js"></script>
+<script src="/assets/scripts/klorofil-common.js"></script>
+<script src="/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 </html>
