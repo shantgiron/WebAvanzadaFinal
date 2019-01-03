@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pucmm.finalweb.model.FacturaProducto;
 import pucmm.finalweb.repository.FacturaProductoRepository;
-import pucmm.finalweb.model.FacturaEquipo;
 
 import javax.transaction.Transactional;
 import java.util.List;

@@ -1,6 +1,5 @@
 package pucmm.finalweb.service;
 
-import pucmm.finalweb.model.FacturaEquipo;
 import pucmm.finalweb.model.FacturaProducto;
 
 import java.util.List;

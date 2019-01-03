@@ -69,9 +69,11 @@
                             <div class="panel-heading">Reporte
 
                             </div>
-                          <form action="/reportes/" method="get">
-                              <button type="submit" class="btn btn-primary">Exportar al XLS</button>
-                          </form>
+
+                              <div class="modal-footer">
+                              <button type="button" onclick="generarReporte()" class="btn btn-primary">Exportar al XLS</button>
+                              </div>
+
 
                         </div>
                         <!-- END MULTI CHARTS -->
@@ -91,63 +93,48 @@
 
 <script>
 
+    function generarReporte(){
+
+        $.ajax({
+            url: '/reportes/',
+            type: 'get',
+
+            success: function (data) {
+
+                alert("El reporte pedidos.xls puede ser accedido desde el escritorio");
+
+                }
+
+        });
+
+    }
+
 
     $(document).ready(function() {
-
-        var subFamilias = [];
-        var promedios = [];
-
-
-        $("#categoria").change(function() {
-            subFamilias = [];
-            promedios = [];
-
-            var categoria = $(this).val();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
             $.ajax({
-                url: '/graficar',
-                type: 'post',
-                data: {categoria: categoria},
-                success: function (response) {
+                url: 'http://localhost:8081/compras/total',
+                type: 'get',
 
 
+                success: function (data) {
+
+                    console.log(data);
                     var ctx = document.getElementById("myChart").innerHTML = "";
 
-                    console.log(response);
-                    for (var i = 0; i < response.length; i++){
-                        subFamilias.push(response[i][0]);
-                        promedios.push(response[i][1]);
-                    }
-                    console.log(subFamilias);
-                    console.log(promedios);
 
                     var ctx = document.getElementById("myChart");
                     var myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: subFamilias,
                             datasets: [{
-                                label: 'Dias promedio',
-                                data: promedios,
+                                label: 'Total de compras realizadas',
+                                data: data,
                                 backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)'
+                                    'rgba(255, 99, 132, 0.2)'
+
                                 ],
                                 borderColor: [
-                                    'rgba(255,99,132,1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(75, 192, 192, 1)',
-                                    'rgba(153, 102, 255, 1)',
-                                    'rgba(255, 159, 64, 1)'
+                                    'rgba(255,99,132,1)'
                                 ],
                                 borderWidth: 1
                             }]
@@ -166,6 +153,92 @@
                 }
 
             });
+
+
+        $.ajax({
+            url: 'http://localhost:8081/compras/totaldespachospendientes',
+            type: 'get',
+
+
+            success: function (data) {
+
+                console.log(data);
+                var ctx = document.getElementById("myChart2").innerHTML = "";
+
+
+                var ctx = document.getElementById("myChart2");
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        datasets: [{
+                            label: 'Total de pedidos pendientes',
+                            data: data,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)'
+
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            }
+
+        });
+
+        $.ajax({
+            url: 'http://localhost:8081/compras/totaldespachosefectuados',
+            type: 'get',
+
+
+            success: function (data) {
+
+                console.log(data);
+                var ctx = document.getElementById("myChart3").innerHTML = "";
+
+
+                var ctx = document.getElementById("myChart3");
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        datasets: [{
+                            label: 'Total de pedidos realizados',
+                            data: data,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)'
+
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+            }
+
         });
     });
 </script>

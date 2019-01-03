@@ -16,7 +16,7 @@ public class PaypalController {
     }
 
 
-    @RequestMapping("/realizar/")
+    @RequestMapping("/realizar")
     public String efectuarPago(Model model){
 
         return "payments";
