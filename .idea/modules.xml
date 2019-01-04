@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/finalwebclient.iml" filepath="$PROJECT_DIR$/.idea/modules/finalwebclient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/finalwebclient_main.iml" filepath="$PROJECT_DIR$/.idea/modules/finalwebclient_main.iml" group="finalwebclient" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/finalwebclient_test.iml" filepath="$PROJECT_DIR$/.idea/modules/finalwebclient_test.iml" group="finalwebclient" />
+    </modules>
+  </component>
+</project>

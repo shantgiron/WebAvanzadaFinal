@@ -61,14 +61,14 @@ public class ComprasController {
                         "http://localhost:8083/clientes/todos",
                         Cliente[].class));
 
-        List<FacturaProducto> compras = Arrays.asList(
+        List<Factura> compras = Arrays.asList(
                 restTemplate.getForObject(
                         "http://localhost:8081/compras/todos",
-                        FacturaProducto[].class));
+                        Factura[].class));
 
 
         model.addAttribute("clientes", clientes);
-        model.addAttribute("equipos", productos);
+        model.addAttribute("productos", productos);
         model.addAttribute("alquileres",compras);
         return "compras";
 
@@ -103,14 +103,7 @@ public class ComprasController {
     }
 
 
-    @PostMapping(value = "/entrega/{id}")
-    public String entrega(@PathVariable("id") String id){
 
-        FacturaProducto a = restTemplate.getForObject("http://localhost:8081/compras/obtener/"+id, FacturaProducto.class);
-        a.getFactura().setCondicion("Despachada");
-        restTemplate.postForObject("http://localhost:8081/compras/modificar"+id, a, FacturaProducto.class);
-        return "redirect:/compras/";
-    }
 
     @GetMapping(value = "/entregado/{id}")
     public String entregado(Model model, @PathVariable("id") String id){
