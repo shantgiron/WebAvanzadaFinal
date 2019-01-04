@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pucmm.finalweb.model.Producto;
-import pucmm.finalweb.service.ClienteEquipoServiceImpl;
 import pucmm.finalweb.service.ProductoServiceImpl;
 
 import java.io.IOException;
@@ -21,10 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/equipos")
+@RequestMapping("/productos")
 public class ProductosController {
 
-    private static String UPLOADED_FOLDER = "C://Users//EmilioFerreiras//Desktop//";
+    private static String UPLOADED_FOLDER =   System.getProperty("user.home")+"/Desktop/";
 
 
     @Autowired
@@ -32,8 +31,6 @@ public class ProductosController {
 
 
 
-    @Autowired
-    private ClienteEquipoServiceImpl clienteEquipoService;
 
     @GetMapping("/")
     public String equipos(Model model)
@@ -47,13 +44,12 @@ public class ProductosController {
 
 
 
-        model.addAttribute("equipos", productos);
-        return "equipos";
+        model.addAttribute("productos", productos);
+        return "productos";
     }
 
     @PostMapping("/")
     public String crearEquipo(@RequestParam("foto") MultipartFile foto, @RequestParam("nombre") String nombre, @RequestParam("precio") String precio, @RequestParam("existencia") String existencia,
-                              @RequestParam("categoria") String categoria, @RequestParam("subfamilia") String subfamilia,
                               RedirectAttributes redirectAttributes) {
 
 
@@ -78,10 +74,10 @@ public class ProductosController {
         producto.setNombre(nombre);
         producto.setPrecio(Float.parseFloat(precio));
         producto.setStock(Integer.parseInt(existencia));
-        System.out.println(categoria);
+
 
         equipoService.crearEquipo(producto);
-        return "redirect:/equipos/";
+        return "redirect:/productos/";
     }
 
     @RequestMapping(value = "/ver/{id}", method = RequestMethod.GET)
@@ -93,13 +89,13 @@ public class ProductosController {
         model.addAttribute("usuario",usuario);
         Producto producto = equipoService.buscarPorId(Long.parseLong(id));
 
-        model.addAttribute("equipo", producto);
+        model.addAttribute("producto", producto);
         return "verproducto";
     }
 
     @PostMapping("/modificar/")
     public String modificarEquipo(@RequestParam("nombre2") String nombre, @RequestParam("id2") String id,@RequestParam("precio2") String precio,
-                               @RequestParam("existencia2") String existencia, @RequestParam("categoria2") String categoria,
+                               @RequestParam("existencia2") String existencia,
                                @RequestParam("foto2") MultipartFile foto,  RedirectAttributes redirectAttributes){
 
         Producto producto = equipoService.buscarPorId(Long.parseLong(id));
@@ -122,7 +118,7 @@ public class ProductosController {
             e.printStackTrace();
         }
         equipoService.actualizarEquipo(producto);
-        return "redirect:/equipos/";
+        return "redirect:/productos/";
     }
 
 
@@ -131,23 +127,12 @@ public class ProductosController {
 
         Producto producto = equipoService.buscarPorId(Long.parseLong(id));
         equipoService.borrarEquipoPorId(producto);
-        return "redirect:/equipos/";
+        return "redirect:/productos/";
 
     }
 
 
-    @RequestMapping(value = "/nodevueltos/", method = RequestMethod.GET)
-    public String listadonodevueltos(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) auth.getPrincipal();
-        String usuario = userDetails.getUsername();
-        model.addAttribute("usuario",usuario);
 
-        List<Object[]> nodevueltos = clienteEquipoService.equiposAlquiladosNoDevueltos();
-        model.addAttribute("objetos",nodevueltos);
-        return "nodevueltos";
-
-    }
 
 
 }

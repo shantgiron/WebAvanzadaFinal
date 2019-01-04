@@ -1,6 +1,5 @@
 package pucmm.finalweb.model;
 
-
 import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -47,6 +46,18 @@ public class Usuario implements Serializable {
         this.email = email;
         this.rol = rol;
         this.cliente = cliente;
+        this.active = 1;
+    }
+
+
+    private int active;
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 
     public int getId() {

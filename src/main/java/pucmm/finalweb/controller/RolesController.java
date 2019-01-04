@@ -7,10 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import pucmm.finalweb.model.Rol;
 import pucmm.finalweb.service.RolServiceImpl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -21,48 +23,22 @@ public class RolesController {
     private RolServiceImpl rolService;
 
 
+    @Autowired
+    RestTemplate restTemplate;
+
     @GetMapping(value="/")
     public String roles(Model model)
-    {
-        List<Rol> roles = new ArrayList<>();
-        roles = rolService.buscarTodosRoles();
-        model.addAttribute("roles", roles);
-        return "roles";
-    }
-
-    @GetMapping(value="/ver/{id}")
-    public String rol(Model model, @PathVariable String id)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
         String usuario = userDetails.getUsername();
         model.addAttribute("usuario",usuario);
-        Rol r = rolService.buscarPorId(Long.parseLong(id));
-        model.addAttribute("rol", r);
-        return "rol";
+        List<Rol> roles = Arrays.asList(restTemplate.getForObject("http://localhost:8083/roles/todos", Rol[].class));
+
+        model.addAttribute("roles", roles);
+        return "roles";
     }
 
 
-    @PostMapping("/")
-    public String crearRol(@RequestParam("nombrerol") String rol){
-        Rol r = new Rol();
-        r.setNombreRol(rol);
-        rolService.crearRol(r);
-        return "redirect:/roles/";
-    }
 
-    @PostMapping("/modificar/")
-    public String modificarRol(@RequestParam("nombrerol2") String rol, @RequestParam("id2") String id){
-        Rol r = rolService.buscarPorId(Long.parseLong(id));
-        r.setNombreRol(rol);
-        rolService.actualizarRol(r);
-        return "redirect:/roles/";
-    }
-
-
-    @PostMapping(value = "/eliminar/{id}")
-    public String borrarRol(@PathVariable String id) {
-        rolService.borrarRolPorId(Long.parseLong(id));
-        return "redirect:/roles/";
-    }
 }

@@ -16,7 +16,7 @@ public class Producto implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column(name = "producto_id", nullable = false, unique = true, updatable = false)
+    @Column(name = "id", nullable = false, unique = true, updatable = false)
     private int id;
 
     @Column(name = "nombre")

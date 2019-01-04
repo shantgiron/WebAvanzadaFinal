@@ -25,7 +25,7 @@
 
                                 <input type="hidden" name="cbt" value="Completar proceso de Compra"> %{--  --}%
                                 <input type="hidden" name="rm" value="2">
-                                <input type="hidden" name="return" value="http://localhost:8081/pagos/completar">
+                                <input type="hidden" name="return" value="/pagos/completar">
                                 <input type="hidden" name="cancel_return" value="/">
 
                                 <div class="form-group">

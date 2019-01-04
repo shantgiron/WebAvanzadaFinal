@@ -16,7 +16,7 @@
 						<div class="panel-body">
 
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalAlquiler">Nueva Compra</button>
-								<form action="/compras/despacho/" method="post">
+								<form action="http://localhost:8081/compras/despacho/" method="post">
                                     <div class="modal fade" id="modalAlquiler" tabindex="-1" role="dialog" aria-labelledby="modalAlquilerLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -52,21 +52,14 @@
                                                         </div>
                                                         <div class="col-md-4">
 
-                                                            <div class="form-group">
-                                                                <label>Fecha de promesa</label>
-                                                                <div class='input-group'>
-                                                                    <div class='input-group date'>
-                                                                        <input id="datepicker" name="fechaentrega" class="form-control pull-right" type="date" required>
-                                                                    </div>
-                                                                </div>
-                                                                  </div>
+
                                                         </div>
                                                     </div>
 
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label>Equipo</label>
+                                                                <label>Producto</label>
 
                                                                 <select id="producto" name="producto" class="form-control select2 select2-hidden-accessible" required>
                                                                     <option value="">Seleccionar producto</option>

@@ -15,7 +15,7 @@
 						<div class="panel-body">
 
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalUsuario">Crear Usuario</button>
-								<form action="/usuarios/" method="POST">
+								<form action="http://localhost:8083/usuarios/crear/" method="POST">
                                     <div class="modal fade" id="modalUsuario" tabindex="-1" role="dialog" aria-labelledby="modalUsuarioLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -67,7 +67,7 @@
 
                                             </div>
                                             <div class="btn-group">
-                                                <form action="/usuarios/eliminar/${usuario.getId()}" method="POST">
+                                                <form action="http://localhost:8083/usuarios/eliminar/${usuario.getId()}" method="POST">
                                                     <button type="submit" class="btn btn-danger"><i class="fa fa-trash aria-hidden="true"></i></button>
                                                 </form>
 
@@ -81,7 +81,7 @@
                                 </table>
                             </div>
 
-                            <form action="/usuarios/modificar/" method="POST">
+                            <form action="http://localhost:8083/usuarios/modificar/" method="POST">
                                 <div class="modal fade" id="modalUsuario2" tabindex="-1" role="dialog" aria-labelledby="modalUsuario2Label" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">

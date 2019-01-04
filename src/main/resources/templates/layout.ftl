@@ -43,7 +43,6 @@
                         <li><a href="/clientes/" class=""><span><@spring.message "clientes"/></span></a></li>
                         <li><a href="/productos/" class=""> <span><@spring.message "productos"/></span></a></li>
                         <li><a href="/roles/" class=""><span><@spring.message "departamentos"/></span></a></li>
-                        <li><a href="/categorias/" class=""><span><@spring.message "categorias"/></span></a></li>
                         <li><a href="/compras/" class=""><span><@spring.message "compras"/></span></a></li>
 
                      

@@ -3,8 +3,6 @@ package pucmm.finalweb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import pucmm.finalweb.model.Cliente;
 import pucmm.finalweb.model.Rol;
 import pucmm.finalweb.model.Usuario;
-import pucmm.finalweb.service.ClienteEquipoServiceImpl;
+import pucmm.finalweb.service.ClienteServiceImpl;
 import pucmm.finalweb.service.RolServiceImpl;
 import pucmm.finalweb.service.UsuarioServiceImpl;
 
@@ -25,11 +23,14 @@ import java.util.*;
 @Controller
 public class IndexController {
 
-    @Autowired
-    private ClienteEquipoServiceImpl clienteEquipoService;
+
 
     @Autowired
     private UsuarioServiceImpl usuarioService;
+
+
+    @Autowired
+    private ClienteServiceImpl clienteService;
     @Autowired
     private RolServiceImpl rolService;
 
@@ -61,6 +62,7 @@ public class IndexController {
             rol2.setNombreRol("Vendedor");
             rolService.crearRol(rol2);
             Usuario u = new Usuario();
+            u.setActive(1);
             Cliente c = new Cliente();
             c.setNombre("Administrador");
             c.setDireccion("C/5 Algun lugar");
@@ -69,8 +71,10 @@ public class IndexController {
             u.setPassword("admin");
             u.setUsername("admin");
             u.setRol(rol);
-            u.setCliente(c);
+
             usuarioService.crearUsuario(u);
+            c.setUsuario(u);
+            clienteService.crearCliente(c);
 
 
         }
@@ -83,10 +87,13 @@ public class IndexController {
             @RequestParam(value = "username", required = false) String username,
             @RequestParam(value = "password", required = false) String password
     ) {
-        usuarioService.autoLogin(username, password);
-
+        boolean s = restTemplate.getForObject("http://localhost:8083/loginPOST", Boolean.class);
+        if(s) {
+            usuarioService.autoLogin(username, password);
+        }
         return "redirect:/";
-    }
+
+        }
 
 
 

@@ -17,7 +17,7 @@
 
 
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalClientes">Crear Cliente</button>
-								<form method="POST" action="/clientes/"  enctype='multipart/form-data'>
+								<form method="POST" action="http://localhost:8083/clientes/crear/" >
                                     <div class="modal fade" id="modalClientes" tabindex="-1" role="dialog" aria-labelledby="modalClientesLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -28,11 +28,15 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
-                                                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
-                                                    <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula">
-                                                    <input type="date"  class="date" min="2018-01-01" max="2018-12-31" id="fechaNacimiento" name="fechaNacimiento">
-                                                    <input type="file"  accept="image/png, image/jpeg" id="foto" name="foto">
+                                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Completo">
+                                                    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion">
+                                                    <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
+                                                    <select id="username" name="username" class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" required >
+                                                        <option selected="selected">Seleccionar Usuario</option>
+                                                                    <#list usuarios as usuario>
+                                                                    <option value="${usuario.getUsername()}">${usuario.getUsername()}</option>
+                                                                    </#list>
+                                                    </select>
 
                                                 </div>
                                                 <div class="modal-footer">
@@ -47,28 +51,33 @@
                             <div class="table-responsive">
                                 <table id="clientstable" class="table table-striped table-bordered table-condensed table-hover table-sm">
                                     <thead>
-                                    <th class="text-center">Cedula</th>
                                     <th class="text-center">Nombre</th>
-                                    <th class="text-center">Apellido</th>
-                                    <th class="text-center">Fecha Nacimiento</th>
+                                    <th class="text-center">Direccion</th>
+                                    <th class="text-center">E-mail</th>
                                     <th class="text-center">Opciones</th>
 
 
                                 <#list clientes as cliente>
                                 <tr>
 
-                                    <td class="text-center">${cliente.getCedula()}</td>
                                     <td class="text-center">${cliente.getNombre()}</td>
-                                    <td class="text-center">${cliente.getApellido()}</td>
-                                    <td class="text-center">${cliente.getFechaNacimiento()}</td>
+                                    <td class="text-center">${cliente.getDireccion()}</td>
+
+                                    <td class="text-center">${cliente.getEmail()}</td>
 
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <a href="/clientes/historial/${cliente.getId()}" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                            <button type="button" onclick="modificar(${cliente.getId()}, '${cliente.getNombre()}', '${cliente.getApellido()}', '${cliente.getCedula()}', '${cliente.getFechaNacimiento()}',
-                                                    '${cliente.getImagen()}')" data-toggle="modal" data-target="#modalClientes2" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                            <a href="/clientes/${cliente.getId()}" class="btn btn-danger"><i class="fa fa-trash aria-hidden="true"></i></a>
-                                        </div>
+                                            <div class="btn-group">
+                                                <div class="btn-group">
+                                                    <button type="button" onclick="modificar(${cliente.getId()}, '${cliente.getNombre()}', '${cliente.getDireccion()}', '${cliente.getEmail()}')" data-toggle="modal" data-target="#modalClientes2" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+
+                                                </div>
+                                                <div class="btn-group">
+                                                    <form action="http://localhost:8083/clientes/eliminar/${cliente.getId()}" method="POST">
+                                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash aria-hidden="true"></i></button>
+                                                    </form>
+
+                                                </div> </div>
                                     </td>
 
 
@@ -77,7 +86,7 @@
                                 </table>
                             </div>
 
-                            <form method="POST" action="/clientes/modificar/"  enctype='multipart/form-data'>
+                            <form method="POST" action="http://localhost:8083/clientes/modificar/" >
                                 <div class="modal fade" id="modalClientes2" tabindex="-1" role="dialog" aria-labelledby="modalClientesLabel2" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -90,10 +99,14 @@
                                             <div class="modal-body">
                                                 <input type="hidden" name="id2" id="id2">
                                                 <input type="text" class="form-control" id="nombre2" name="nombre2" placeholder="Nombre">
-                                                <input type="text" class="form-control" id="apellido2" name="apellido2" placeholder="Apellido">
-                                                <input type="text" class="form-control" id="cedula2" name="cedula2" placeholder="Cedula">
-                                                <input type="date"  class="date" min="2018-01-01" max="2018-12-31" id="fechaNacimiento2" name="fechaNacimiento2">
-                                                <input type="file"  accept="image/png, image/jpeg" id="foto2" name="foto2">
+                                                <input type="text" class="form-control" id="direccion2" name="direccion2" placeholder="Direccion">
+                                                <input type="text" class="form-control" id="email2" name="email2" placeholder="Email">
+                                                <select id="username2" name="username2" class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" required >
+                                                    <option selected="selected">Seleccionar Usuario</option>
+                                                                    <#list usuarios as usuario>
+                                                                    <option value="${usuario.getUsername()}">${usuario.getUsername()}</option>
+                                                                    </#list>
+                                                </select>
 
                                             </div>
                                             <div class="modal-footer">
@@ -121,13 +134,11 @@
 
 <script>
 
-    function modificar(id, nombre, apellido, cedula, fechaNacimiento, foto){
+    function modificar(id, nombre, direccion, email){
         $('#id2').val(id);
         $('#nombre2').val(nombre);
-        $('#apellido2').val(apellido);
-        $('#cedula2').val(cedula);
-        $('#fechaNacimiento2').val(fechaNacimiento);
-        $('#foto2').val(foto);
+        $('#direccion2').val(direccion);
+        $('#email2').val(email);
     }
 
 </script>

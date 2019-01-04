@@ -41,8 +41,8 @@ public class Cliente implements Serializable {
     @JoinColumn(name = "usuario")
     private Usuario usuario;
 
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval =  true)
-    private Factura factura;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval =  true)
+    private Set<Factura> facturas;
 
     private boolean deleted = false;
 
@@ -51,12 +51,12 @@ public class Cliente implements Serializable {
 
     }
 
-    public Cliente(String nombre, String direccion, String email, Usuario usuario, Factura factura) {
+    public Cliente(String nombre, String direccion, String email, Usuario usuario, Set<Factura> factura) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.email = email;
         this.usuario = usuario;
-        this.factura = factura;
+        this.facturas = factura;
     }
 
     public int getId() {
@@ -99,12 +99,12 @@ public class Cliente implements Serializable {
         this.usuario = usuario;
     }
 
-    public Factura getFactura() {
-        return factura;
+    public Set<Factura> getFacturas() {
+        return facturas;
     }
 
-    public void setFactura(Factura factura) {
-        this.factura = factura;
+    public void setFacturas(Set<Factura> facturas) {
+        this.facturas = facturas;
     }
 
     public boolean isDeleted() {

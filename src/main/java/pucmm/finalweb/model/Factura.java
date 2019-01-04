@@ -27,7 +27,7 @@ public class Factura implements Serializable {
     @Column(name = "condicion")
     private String condicion;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente")
     private Cliente cliente;
 

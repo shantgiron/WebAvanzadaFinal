@@ -17,7 +17,7 @@
 						<div class="panel-body">
 
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalRol">Crear Rol</button>
-								<form action="/roles/" method="POST">
+								<form action="http://localhost:8083/roles/crear/" method="POST">
                                     <div class="modal fade" id="modalRol" tabindex="-1" role="dialog" aria-labelledby="modalRolLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -59,7 +59,7 @@
                                         <div class="btn-group">
 
                                         <div class="btn-group">
-                                            <form action="/roles/eliminar/${rol.getId()}" method="POST">
+                                            <form action="http://localhost:8083/roles/eliminar/${rol.getId()}" method="POST">
                                                 <button type="submit" class="btn btn-danger"><i class="fa fa-trash aria-hidden="true"></i></button>
                                             </form>
 
@@ -73,7 +73,7 @@
                                 </table>
                             </div>
 
-                            <form action="/roles/modificar/" method="POST">
+                            <form action="http://localhost:8083/roles/modificar/" method="POST">
                                 <div class="modal fade" id="modalRol2" tabindex="-1" role="dialog" aria-labelledby="modalRol2Label" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
