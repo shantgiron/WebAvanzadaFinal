@@ -57,20 +57,20 @@
                                 <tr>
 
                                     <td class="text-center">${producto.getId()}</td>
-                                    <td class="text-center">${producto.getNombreEquipo()}</td>
+                                    <td class="text-center">${producto.getNombre()}</td>
                                     <td class="text-center">${producto.getPrecio()}</td>
                                     <td class="text-center">${producto.getStock()}</td>
 
                                     <td class="text-center">
                                         <div class="btn-group">
 
-                                            <button type="button" onclick="modificar(${producto.getId()}, '${producto.getNombreEquipo()}', '${producto.getPrecio()}', '${producto.getStock()}''
+                                            <button type="button" onclick="modificar(${producto.getId()}, '${producto.getNombre()}', '${producto.getPrecio()}', '${producto.getStock()}''
                                                     )" data-toggle="modal" data-target="#modalEquipo2" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                         </div>
                                         <div class="btn-group">
-                                            <form action="http://localhost:8083/roles/eliminar/${rol.getId()}" method="POST">
+                                            <form action="http://localhost:8082/productos/eliminar/${producto.getId()}" method="POST">
 
-                                            <button href="http://localhost:8082/productos/eliminar/${producto.getId()}" class="btn btn-danger"><i class="fa fa-trash aria-hidden="true"></i></button>
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash aria-hidden="true"></i></button>
                                             </form>
                                         </div>
 
@@ -122,7 +122,7 @@
 <script>
     $('.datepicker').datepicker({format: "dd-mm-yyyy"});
 
-    function modificar(id, nombre, precio, existencia, categoria, foto){
+    function modificar(id, nombre, precio, existencia, foto){
         $('#id2').val(id);
         $('#nombre2').val(nombre);
         $('#precio2').val(precio);
